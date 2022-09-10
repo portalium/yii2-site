@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use portalium\theme\widgets\ActiveForm;
 use yii\captcha\Captcha;
 use portalium\site\Module;
 

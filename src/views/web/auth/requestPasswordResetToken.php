@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use portalium\theme\widgets\ActiveForm;
 use portalium\site\Module;
 
 $this->title = Module::t('Request password reset');
