@@ -13,7 +13,7 @@ use portalium\theme\widgets\Html;
 
 class ActiveForm
 {
-    private static $typeMethodName= [
+    private static $typeMethodName = [
         Form::TYPE_INPUT => 'input',
         Form::TYPE_INPUTTEXT => 'textInput',
         Form::TYPE_INPUTPASSWORD => 'passwordInput',
@@ -31,26 +31,26 @@ class ActiveForm
 
     public static function configT($model)
     {
-        $items = Json::decode($model->config,true);
-        return (is_array($items)) ? array_map(function($item) use($model) {
+        $items = Json::decode($model->config, true);
+        return (is_array($items)) ? array_map(function ($item) use ($model) {
             return Module::settingT($model->module, $item);
-            }, $items) : $model->config;
+        }, $items) : $model->config;
     }
 
     public static function field($form, $model, $index, $label)
     {
         $method = self::getMethodName($model->type);
 
-        if(in_array($model->type, [Form::TYPE_INPUTFILE, Form::TYPE_TEXTAREA, Form::TYPE_CHECKBOX, Form::TYPE_RADIO, Form::TYPE_RADIOLIST, Form::TYPE_LISTBOX, Form::TYPE_DROPDOWNLIST]))
+        if (in_array($model->type, [Form::TYPE_INPUTFILE, Form::TYPE_TEXTAREA, Form::TYPE_CHECKBOX, Form::TYPE_RADIO, Form::TYPE_RADIOLIST, Form::TYPE_LISTBOX, Form::TYPE_DROPDOWNLIST]))
             return $form->field($model, "[$index]value")->$method(self::configT(self::getConfigData($model)))->label($label);
 
-        if(in_array($model->type, [Form::TYPE_INPUTTEXT, Form::TYPE_INPUTPASSWORD]))
+        if (in_array($model->type, [Form::TYPE_INPUTTEXT, Form::TYPE_INPUTPASSWORD]))
             return $form->field($model, "[$index]value")->$method()->label($label);
-        
-        if(in_array($model->type, [Form::TYPE_INPUT]))
+
+        if (in_array($model->type, [Form::TYPE_INPUT]))
             return $form->field($model, "[$index]value")->$method($model->config)->label($label);
 
-        if(in_array($model->type, [Form::TYPE_WIDGET])){
+        if (in_array($model->type, [Form::TYPE_WIDGET])) {
             $data = self::getConfigData($model);
             $id = $model->id;
             try {
@@ -61,8 +61,8 @@ class ActiveForm
             }
             return $form->field($model, "[$index]value")->$method($data['class'], $data['options'])->label($label);
         }
-        
-        if(in_array($model->type, [Form::TYPE_CHECKBOXLIST]))
+
+        if (in_array($model->type, [Form::TYPE_CHECKBOXLIST]))
             return $form->field($model, "[$index]value")->$method(self::configT(self::getConfigData($model)))->label($label);
     }
 
@@ -73,38 +73,40 @@ class ActiveForm
 
     private static function getConfigData($model)
     {
-        $items = Json::decode($model->config,true);
+        $items = Json::decode($model->config, true);
 
-        if(isset($items['widget'])){
+        if (isset($items['widget'])) {
             $class = $items['widget'];
             $options = $items['options'];
             return ['class' => $class, 'options' => $options];
         }
 
-        if(isset($items['model'])){
+        if (isset($items['model'])) {
             $class  = $items['model']['class'];
 
             $where = isset($items['model']['where']) ? $items['model']['where'] : [];
             $data   = $class::find()->where($where)->all();
 
-            $model->config = Json::encode(ArrayHelper::map( $data,
+            $model->config = Json::encode(ArrayHelper::map(
+                $data,
                 $items['model']['map']['key'],
                 $items['model']['map']['value']
-            ),true);
+            ), true);
         }
 
-        if(isset($items['method'])){
+        if (isset($items['method'])) {
             $class = $items['method']['class'];
 
             $method = $items['method']['name'];
             $params = isset($items['method']['params']) ? $items['method']['params'] : [];
 
-            $model->config = Json::encode(ArrayHelper::map( $class::$method($params),
+            $model->config = Json::encode(ArrayHelper::map(
+                $class::$method($params),
                 $items['method']['map']['key'],
                 $items['method']['map']['value']
-            ),true);
+            ), true);
         }
-        
+
 
         return $model;
     }

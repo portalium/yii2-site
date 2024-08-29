@@ -7,11 +7,9 @@ use portalium\site\Module;
 use portalium\site\models\LoginForm;
 use portalium\user\models\User;
 
-
 $this->title = Module::t('Login');
 AppAsset::register($this);
 ?>
-
 <div class="site-login">
 <div class="row justify-content-center">
     <div class="col-lg-4">

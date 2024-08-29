@@ -22,7 +22,7 @@ class Setting extends ActiveRecord
             [['module','name','label','type'], 'required'],
             [['name'], 'string', 'max' => 200],
             ['type', 'default', 'value' => Form::TYPE_INPUT],
-            ['type', 'in', 'range' => Form::getTypes()],
+            ['type', 'in', 'range' => Form::getTypes()], 
             ['value', 'safe'],
         ];
     }

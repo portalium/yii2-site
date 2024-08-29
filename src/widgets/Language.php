@@ -17,11 +17,26 @@ class Language extends Widget
     public $style;
     public $display;
 
+    public $placement;
+
     public function init()
     {
         if(!$this->icon){
-            $this->icon = Html::tag('i', '', ['class' => '', 'style' => 'margin-right: 5px;']);
+           // $this->icon = Html::tag('i', '', ['class' => '', 'style' => 'margin-right: 5px;']);
         }
+         
+
+        $this->options['class'] = 'placementWidget';
+        if($this->placement == 'top-to-bottom'){
+            $this->options['data-bs-placement'] = $this->placement; 
+            $this->registerCss();
+
+        }if($this->placement == 'side-by-side'){
+            $this->registerCss();
+        }
+
+
+
         parent::init();
     }
 
@@ -43,6 +58,7 @@ class Language extends Widget
             'url' => ['/site/home/lang','lang' => Yii::$app->language],
             'items' => $langItems,
             'display' => $this->display,
+            'placement'=> $this->placement,
         ];
         return Nav::widget([
             'options' => $this->options,
@@ -74,4 +90,21 @@ class Language extends Widget
 
         return $label;
     }
+
+    private function registerCss()
+    {
+        $css = <<<CSS
+    .placementWidget[data-bs-placement="side-by-side"] {
+    }
+    .placementWidget[data-bs-placement="top-to-bottom"] li a i {
+     display: block;
+     flex-direction: column; 
+     align-items: center;
+    }
+    CSS;
+        $this->getView()->registerCss($css);
+    }
+
+
+
 }
