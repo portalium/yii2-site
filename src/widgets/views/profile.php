@@ -36,17 +36,18 @@ if ($placement == 'top-to-bottom') {
 //exit;
 
 ?>
-
-<li class="nav-item dropdown <?= $placementStyle ?>">
-    <a href="#" class="nav-link dropdown-toggle profile flex-column" data-bs-toggle="dropdown" data-bs-placement="<?php echo $placement?> " aria-expanded="false" style="padding-bottom:7px !important; margin-bottom:0px; padding-top:3px !important; display:flex; align-items: center;">
+<ul class="card-box nav dropdown" > 
+<li class="nav-item dropdown <?= $placementStyle ?>" style="width: 100%;">
+    <a href="#" class="nav-link dropdown-toggle profile flex-column" data-bs-toggle="dropdown" data-bs-placement="<?php echo $placement?> " aria-expanded="false" style="padding-bottom:7px !important; margin-bottom:0px; padding-top:3px !important; display:flex; align-items: center; height:50px !important;  ">
         <?php if ($model !== null) : ?>
             <img src="<?= $filePath ?>" alt="<?= $title ?>" width="<?= $iconSize ?>" height="<?= $iconSize ?>" class="rounded-circle me-2 flex-column" style="margin-top:5px; margin-left: -5px;">
             <span class="photo-label flex-column" style="vertical-align: middle;margin-left: 10px;"><?= $label ?></span>
 
         <?php else : ?>
-            <span class="profile-picture initials"><?= $usernameInitial ?></span>
-            <span class="photo-label" style="vertical-align: middle;margin-left: 12.4px;"><?= $label ?></span>
-            <div style=" padding-top: 5px;"><?php echo $first_name  ?></div>
+            <div class="ımagelabel" style="height: 100%; width:100%">
+            <span class="profile-picture initials" style="display: inline-block; vertical-align: middle; "><?= $usernameInitial ?></span>
+            <div style=" padding-top: 5px; display: inline-block; vertical-align: middle;  margin-right:15px ;"><?php echo $first_name  ?></div>
+            </div>
         <?php endif; ?>
     </a>
     <ul class="dropdown-menu">
@@ -55,7 +56,7 @@ if ($placement == 'top-to-bottom') {
                 <?php if ($model !== null) : ?>
                     <img src="<?= $filePath ?>" alt="<?= $title ?>" width="80" height="80" class="rounded-circle mx-auto mb-3">
                 <?php else : ?>
-                    <span class="profile-picture initials rounded-circle mx-auto mb-3"><?= $usernameInitial ?></span>
+                    <span class="profile-picture initials rounded-circle mx-auto mb-3" style=""><?= $usernameInitial ?></span>
                 <?php endif; ?>
                 <span><?= $username ?></span>
                 <?php if ($first_name !== null || $last_name !== null) : ?>
@@ -73,3 +74,4 @@ if ($placement == 'top-to-bottom') {
         <li><a class="dropdown-item " href="/site/auth/logout" style="text-align: center;border:none !important"><?php echo Module::t('Logout') ?></a></li>
     </ul>
 </li>
+</ul>

@@ -63,6 +63,7 @@ class Profile extends Widget
                 $usernameInitial = mb_substr($username, 0, 1, 'UTF-8');
                 $title = $username;
             }
+           
             return $this->render('./profile', [
                 'username' => $username,
                 'last_name' => $last_name,

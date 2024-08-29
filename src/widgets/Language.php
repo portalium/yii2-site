@@ -22,7 +22,7 @@ class Language extends Widget
     public function init()
     {
         if(!$this->icon){
-            $this->icon = Html::tag('i', '', ['class' => '', 'style' => 'margin-right: 5px;']);
+           // $this->icon = Html::tag('i', '', ['class' => '', 'style' => 'margin-right: 5px;']);
         }
          
 
