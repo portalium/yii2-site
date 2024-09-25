@@ -137,7 +137,7 @@ class m010101_010101_site_setting extends Migration
             'type' => Form::TYPE_RADIOLIST,
             'config' => json_encode([ 1 => 'Show', 0 => 'Hide'])
         ]);
-
+        
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
             'name' => 'api::signup',
@@ -203,7 +203,7 @@ class m010101_010101_site_setting extends Migration
             'module' => 'site',
             'name' => 'site::userStatus',
             'label' => 'User Registration Status',
-            'value' => '1',
+            'value' => '10',
             'type' => Form::TYPE_RADIOLIST,
             'config' => json_encode([ 10 => 'Active', 20 => 'Passive'])
         ]);
@@ -242,6 +242,15 @@ class m010101_010101_site_setting extends Migration
             'value' => 'ssl',
             'type' => Form::TYPE_RADIOLIST,
             'config' => json_encode(['ssl' => 'SSL','tls' => 'TLS'])
+        ]);
+
+        $this->insert(Module::$tablePrefix . 'setting', [
+            'module' => 'site',
+            'name' => 'site::recaptcha',
+            'label' => 'ReCaptcha',
+            'value' => '1',
+            'type' => Form::TYPE_RADIOLIST,
+            'config' =>  json_encode([ 1 => 'Allow', 0 => 'Deny'])
         ]);
 
     }

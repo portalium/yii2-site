@@ -2,6 +2,7 @@
 
 namespace portalium\site\controllers\web;
 
+use Exception;
 use InvalidArgumentException;
 use portalium\site\models\ResendVerificationEmailForm;
 use Yii;
@@ -45,7 +46,7 @@ class AuthController extends WebController
         return parent::beforeAction($action);
     }
 
-  /*  public function actions()
+    /*  public function actions()
     {
         return [
             'captcha' => [
@@ -88,13 +89,13 @@ class AuthController extends WebController
             throw new BadRequestHttpException($e->getMessage());
         }
 
-        if (($user = $model->verifyEmail()) &&Yii::$app->user->login($user)) {
+        if (($user = $model->verifyEmail()) && Yii::$app->user->login($user)) {
 
             $userId = Yii::$app->user->id;
             $userModel = User::findOne($userId);
-            $userModel->email_verify =User:: EMAIL_VERIFY;
+            $userModel->email_verify = User::EMAIL_VERIFY;
             $userModel->save();
-            
+
             return $this->goHome();
         }
         Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');
@@ -103,7 +104,7 @@ class AuthController extends WebController
 
     public function actionResendVerificationEmail()
     {
-        $model=new ResendVerificationEmailForm();
+        $model = new ResendVerificationEmailForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
@@ -129,7 +130,6 @@ class AuthController extends WebController
         if (Yii::$app->setting->getValue('form::signup')) {
             $model = new SignupForm();
             if ($model->load(Yii::$app->request->post())) {
-               
                 if ($user = $model->signup()) {
                     if (Yii::$app->getUser()->login($user)) {
                         return $this->goHome();
@@ -140,7 +140,6 @@ class AuthController extends WebController
                 'model' => $model,
             ]);
         }
-
         return $this->goHome();
     }
 

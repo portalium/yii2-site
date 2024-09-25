@@ -28,20 +28,20 @@ AppAsset::register($this);
                             'labelOptions' => ['style' => 'margin-top: 10px;'],
                         ],
                     ]); ?>
-                    
-                    <?= $form->field($model, 'username', ['options'=>['class' => 'form-attribute mb-3 row']])->textInput(['autofocus' => true, 'class' => 'form-control form-control-lg', 'placeholder' => Module::t('Username')]) ?>
-                    <?= $form->field($model, 'email', ['options'=>['class' => 'form-attribute mb-3 row']])
+
+                    <?= $form->field($model, 'username', ['options' => ['class' => 'form-attribute mb-3 row']])->textInput(['autofocus' => true, 'class' => 'form-control form-control-lg', 'placeholder' => Module::t('Username')]) ?>
+                    <?= $form->field($model, 'email', ['options' => ['class' => 'form-attribute mb-3 row']])
                         ->textInput(['class' => 'form-control form-control-lg', 'placeholder' => Module::t('Email')]) ?>
-                    <?= $form->field($model, 'password', ['options'=>['class' => 'form-attribute mb-3 row']])->passwordInput(['class' => 'form-control form-control-lg', 'placeholder' => Module::t('Password')]) ?>
+                    <?= $form->field($model, 'password', ['options' => ['class' => 'form-attribute mb-3 row']])->passwordInput(['class' => 'form-control form-control-lg', 'placeholder' => Module::t('Password')]) ?>
                     <?= $form->field($model, 'verifyCode')->widget(
-                      \himiklab\yii2\recaptcha\ReCaptcha3::className(),
-                    [
-                     'siteKey' => '6LdtOVspAAAAAGGnMu_yPK2hlyyNAjmiQJz0v7Ws', // unnecessary is reCaptcha component was set up
-                     'action' => 'signup', 
-                    ]
+                        \himiklab\yii2\recaptcha\ReCaptcha3::className(),
+                        [
+                            'siteKey' => '6LdtOVspAAAAAGGnMu_yPK2hlyyNAjmiQJz0v7Ws', // unnecessary is reCaptcha component was set up
+                            'action' => 'signup',
+                        ]
                     ) ?>
                     <div class="d-grid" style="margin-left:10px; margin-right:10px;">
-                        <?= '<div class = "clearfix"></div>' .Html::submitButton(Module::t('Signup'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                        <?= '<div class = "clearfix"></div>' . Html::submitButton(Module::t('Signup'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                     </div>
                     <?php ActiveForm::end(); ?>
                 </div>

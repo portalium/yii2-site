@@ -13,6 +13,7 @@ class LoginButton extends Widget
     public $icon;
     public $display;
     public $style;
+    public $placement;
     public function init()
     {
         if(!$this->icon){
