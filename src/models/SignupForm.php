@@ -89,14 +89,6 @@ class SignupForm extends Model
         $user->generateEmailVerificationToken();
         $user->status = Yii::$app->setting->getValue('site::verifyEmail') ? User::STATUS_PASSIVE : (Yii::$app->setting->getValue('site::userStatus') == User::STATUS_ACTIVE ? User::STATUS_ACTIVE : User::STATUS_PASSIVE);
 
-    
-        
-        // if(Yii::$app->setting->getValue('site::verifyEmail')){
-        //     $user->status = User::STATUS_PASSIVE;
-        // }
-        // else {
-        //     $user->status = Yii::$app->setting->getValue('site::userStatus') == User::STATUS_PASSIVE ? User::STATUS_PASSIVE: User::STATUS_ACTIVE;
-        // }
 
 
         if ($user->save()) {
