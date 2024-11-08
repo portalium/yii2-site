@@ -94,6 +94,7 @@ class AuthController extends WebController
             $userId = Yii::$app->user->id;
             $userModel = User::findOne($userId);
             $userModel->email_verify = User::EMAIL_VERIFY;
+            $userModel->status = Yii::$app->setting->getValue('site::userStatus');
             $userModel->save();
 
             return $this->goHome();
