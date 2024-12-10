@@ -20,7 +20,7 @@ class SignupForm extends Model
     public $last_name;
     public $isApiRequest;
     const RECAPCHA_ACTIVE = 1;
-    const RECAPCHA_PASIVE = 0;
+    const RECAPCHA_PASSIVE = 0;
 
 
     public function rules()
