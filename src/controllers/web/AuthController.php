@@ -99,7 +99,7 @@ class AuthController extends WebController
 
             return $this->goHome();
         }
-        Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');
+        Yii::$app->session->setFlash('error', Module::t('Sorry, we are unable to verify your account with provided token.'));
         return $this->goHome();
     }
 
@@ -108,10 +108,10 @@ class AuthController extends WebController
         $model = new ResendVerificationEmailForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('success', Module::t('Check your email for further instructions.'));
                 return $this->goHome();
             }
-            Yii::$app->session->setFlash('error', 'Sorry, we are unable to resend verification email for the provided email address.');
+            Yii::$app->session->setFlash('error', Module::t('Sorry, we are unable to reset password for the provided email address.'));
         }
 
         return $this->render('resendVerificationEmail', [
@@ -152,7 +152,7 @@ class AuthController extends WebController
                 Yii::$app->session->addFlash('success', Module::t('Check your email for further instructions.'));
                 return $this->goHome();
             } else {
-                Yii::$app->session->addFlash('error', Module::t('Sorry, we are unable to reset password for the provided email address.'));
+                Yii::$app->session->addFlash('error', Module::t('We cannot send a reset email because your SMTP username and password are not defined in the system!'));
             }
         }
 

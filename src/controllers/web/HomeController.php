@@ -18,7 +18,7 @@ class HomeController extends WebController
     {
         $behaviors = parent::behaviors();
 
-        $behaviors['access']['except'] = ['index'];
+        $behaviors['access']['except'] = ['index', 'lang'];
         return $behaviors;
     }
 
@@ -79,7 +79,8 @@ class HomeController extends WebController
     public function actionLang($lang)
     {
         Yii::$app->session->set('lang', $lang);
-        // return $this->goBack(Yii::$app->request->referrer);
+        Yii::$app->language = $lang;
+
         return $this->redirect(Yii::$app->request->referrer);
     }
 

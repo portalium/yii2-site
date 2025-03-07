@@ -51,8 +51,10 @@ return [
     'Please choose your new password:' => 'Lütfen yeni bir şifre belirleyiniz:',
     'Reset password' => 'Şifreyi sıfırla',
     'Check your email for further instructions.' => 'Ayrıntılı bilgi için e-posta adresinizi kontrol edin.',
-    'Sorry, we are unable to reset password for the provided email address.' => 'Maalesef, ilgili e-posta adresi için şifreyi sıfırlayamıyoruz.',
     'New password saved.' => 'Yeni şifreniz kaydedildi.',
+    'We cannot send a reset email because your SMTP username and password are not defined in the system!' => 'SMTP kullanıcı adınız ve şifreniz sistemde tanımlı olmadığından sıfırlama e-postası gönderemiyoruz!',
+    'Sorry, we are unable to reset password for the provided email address.' => 'Üzgünüz, verilen e-posta adresinin şifresini sıfırlayamıyoruz.',
+    'Sorry, we are unable to verify your account with provided token.' => 'Üzgünüz, sağlanan token ile hesabınızı doğrulayamıyoruz.',
     /* Setting */
     'Title' => 'Başlık',
     'Language' => 'Dil',
