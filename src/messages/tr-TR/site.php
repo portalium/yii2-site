@@ -11,6 +11,7 @@ return [
     'Portalium Home - Frontend' => 'Portalium Anasayfa - Önyüz',
     'Email' => 'E-Posta',
     'Edit Account' => 'Hesabı Düzenle',
+    'No Content' => 'İçerik Yok',
     /* About */
     'About' => 'Hakkımızda',
     'This is the About page. You may modify the following file to customize its content:' => 'Bu, Hakkında sayfasıdır. İçeriğini özelleştirmek için aşağıdaki dosyayı değiştirebilirsiniz:',
@@ -127,6 +128,9 @@ return [
     'There are an error. Settings not saved.' => 'Bir hata var. Ayarlar kaydedilmedi.',
     'Preferences' => 'Tercihler',
     'Contents' => 'İçerikler',
+    'Timezone' => 'Zaman Dilimi',
+    'Default Page Size' => 'Varsayılan Sayfa Boyutu',
+    'Theme' => 'Tema',
 
     /*Profile*/
     'Profile' => 'Profil',
@@ -149,5 +153,18 @@ return [
     'Show/Hide' => 'Göster/Gizle',
     'Regenerate' => 'Yeniden Oluştur',
     'Access Token' => 'Erişim Anahtarı',
-    'Keys' => 'Anahtarlar'
+    'Keys' => 'Anahtarlar',
+    'Workspace Default Role' => 'Çalışma Alanı Varsayılan Rolü',
+    'Workspace Admin Role' => 'Çalışma Alanı Yöneticisi Rolü',
+    'Default Storage Path' => 'Varsayılan Depolama Yolu',
+    'Main Menu' => 'Ana Menü',
+    'Side Menu' => 'Yan Menü',
+    'Side Menu Default Status (Desktop)' => 'Yan Menü Varsayılan Durum (Masaüstü)',
+    'Side Menu Default Status (Mobile)' => 'Yan Menü Varsayılan Durum (Mobil)',
+    'Side Menu Closed Display Style' => 'Yan Menü Kapalı Görüntüleme Stili',
+    'Available Roles' => 'Mevcut Roller',
+    'Active' => 'Aktif',
+    'Passive' => 'Pasif',
+    'Email Confirmation' => 'E-posta onayı',
+    'Disable' => 'Devre Dışı'
 ];

@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $tabsData = [];
 foreach ($settingsGroup as $module => $items) {
     $tabsData[] = [
-        'label' => Yii::$app->getModule($module)->t(Yii::$app->getModule($module)::$name),
+        'label' => Yii::$app->getModule($module)->t(Module::t(Yii::$app->getModule($module)::$name)),
         'content' => $this->render('_setting', ['settings' => $items, 'form' => $form]),
         
     ];
