@@ -9,8 +9,6 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class Mailer extends CoreMailer
 {
-    public $smtpCredentialsMissing = false;
-
     public function init()
     {
         parent::init();
