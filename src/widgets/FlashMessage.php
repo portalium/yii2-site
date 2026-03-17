@@ -5,6 +5,7 @@ namespace portalium\site\widgets;
 use Yii;
 
 use portalium\bootstrap5\Widget;
+use portalium\site\bundles\ToastifyAsset;
 
 class FlashMessage extends Widget
 {
@@ -69,7 +70,7 @@ class FlashMessage extends Widget
     public function init()
     {
         parent::init();
-        \portalium\theme\bundles\ToastifyAsset::register($this->view);
+        ToastifyAsset::register($this->view);
         // Set duration from dismissDuration for toast
         $this->duration = $this->dismissDuration;
         // Set close from closeButton
