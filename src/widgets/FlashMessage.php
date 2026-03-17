@@ -59,22 +59,32 @@ class FlashMessage extends Widget
     public $stopOnFocus = true;
 
     /**
-     * @var array the options for rendering the close button tag.
+     * @var bool|array Legacy option to control close button rendering (Yii2-style).
+     * If set to false, the close button will be disabled.
      */
     public $closeButton = [];
 
+    /**
+     * @var bool Whether the toast should auto-dismiss after `duration` milliseconds.
+     * If false, `duration` is treated as 0 and the toast will stay until manually closed.
+     */
     public $autoDismiss = true;
-
-    public $dismissDuration = 5000;
 
     public function init()
     {
         parent::init();
         ToastifyAsset::register($this->view);
-        // Set duration from dismissDuration for toast
-        $this->duration = $this->dismissDuration;
-        // Set close from closeButton
-        $this->close = !empty($this->closeButton);
+
+        // Apply auto-dismiss behavior. If autoDismiss is disabled, force duration to 0.
+        if (!$this->autoDismiss) {
+            $this->duration = 0;
+        }
+
+        // Legacy support: if closeButton is explicitly set to false, disable the close icon.
+        if ($this->closeButton === false) {
+            $this->close = false;
+        }
+
         // Toast widget handles the flash messages via run() method
     }
 
