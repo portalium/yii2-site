@@ -7,20 +7,20 @@ use Yii;
 use portalium\bootstrap5\Alert;
 use portalium\bootstrap5\Widget;
 
-class FlashMessage extends Widget
+class FlashMessage extends \portalium\theme\widgets\Toast
 {
     /**
      * @var array the alert types configuration for the flash messages.
      * This array is setup as $key => $value, where:
      * - $key is the name of the session flash variable
-     * - $value is the bootstrap alert type (i.e. danger, success, info, warning)
+     * - $value is the toast background color (gradient or color)
      */
     public $alertTypes = [
-        'error'   => 'alert-danger',
-        'danger'  => 'alert-danger',
-        'success' => 'alert-success',
-        'info'    => 'alert-info',
-        'warning' => 'alert-warning'
+        'error'   => 'linear-gradient(to right, #ff5f6d, #ffc371)',
+        'danger'  => 'linear-gradient(to right, #ff5f6d, #ffc371)',
+        'success' => 'linear-gradient(to right, #00b09b, #96c93d)',
+        'info'    => 'linear-gradient(to right, #2193b0, #6dd5ed)',
+        'warning' => 'linear-gradient(to right, #f7971e, #ffd200)'
     ];
     /**
      * @var array the options for rendering the close button tag.
@@ -34,39 +34,10 @@ class FlashMessage extends Widget
     public function init()
     {
         parent::init();
-        Yii::$app->view->registerJs('if ($.pjax) $.pjax.defaults.timeout = 30000;');
-        if ($this->autoDismiss) {
-
-            $this->view->registerJs('
-                $(".alert").each(function() {
-                    setTimeout(function() {
-                        $(this).alert("close");
-                    }.bind(this),' .  $this->dismissDuration . ');
-                });
-            ');
-        }
-
-
-        $session = Yii::$app->session;
-        $flashes = $session->getAllFlashes();
-        $appendCss = isset($this->options['class']) ? ' ' . $this->options['class'] : '';
-
-        foreach ($flashes as $type => $data) {
-            if (isset($this->alertTypes[$type])) {
-                $data = (array) $data;
-                foreach ($data as $i => $message) {
-                    $this->options['class'] = $this->alertTypes[$type] . $appendCss;
-                    $this->options['id'] = $this->getId() . '-' . $type . '-' . $i;
-
-                    echo Alert::widget([
-                        'body' => $message,
-                        'closeButton' => $this->closeButton,
-                        'options' => $this->options,
-                    ]);
-                }
-
-                $session->removeFlash($type);
-            }
-        }
+        // Set duration from dismissDuration for toast
+        $this->duration = $this->dismissDuration;
+        // Set close from closeButton
+        $this->close = !empty($this->closeButton);
+        // Toast widget handles the flash messages via run() method
     }
 }
