@@ -14,6 +14,7 @@ class ToastifyAsset extends AssetBundle
 
     public $js = [
         'plugins/toastify/js/toastify.js',
+        'js/flash-message-toastify.js',
     ];
 
     public $depends = [
