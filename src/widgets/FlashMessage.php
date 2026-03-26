@@ -6,6 +6,8 @@ use Yii;
 
 use portalium\bootstrap5\Widget;
 use portalium\site\bundles\ToastifyAsset;
+use yii\helpers\Html;
+use yii\helpers\Json;
 
 class FlashMessage extends Widget
 {
@@ -59,7 +61,7 @@ class FlashMessage extends Widget
     public $stopOnFocus = true;
 
     /**
-     * @var bool|array Legacy option to control close button rendering (Yii2-style).
+     * @var bool|array Legacy option to control close button rendering
      * If set to false, the close button will be disabled.
      */
     public $closeButton = [];
@@ -108,64 +110,20 @@ class FlashMessage extends Widget
 
         Yii::$app->session->removeAllFlashes();
 
-        $jsonData = json_encode(
-            $toastData,
-            JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP
-        );
+        $options = [
+            'colors' => $this->colors,
+            'alertTypes' => $this->alertTypes,
+            'position' => $this->position,
+            'gravity' => $this->gravity,
+            'close' => $this->close,
+            'offset' => $this->offset,
+            'stopOnFocus' => $this->stopOnFocus,
+        ];
 
-        $jsonColors = json_encode($this->colors);
-
-        $jsonAlertTypes = json_encode($this->alertTypes);
-
-        $jsonPosition = json_encode($this->position);
-
-        $jsonGravity = json_encode($this->gravity);
-
-        $jsonClose = json_encode($this->close);
-
-        $jsonOffset = json_encode($this->offset);
-
-        $jsonStopOnFocus = json_encode($this->stopOnFocus);
-
-        $js = <<<JS
-(function(){
-    var toasts = $jsonData;
-    var colorMap = {
-        success: 'linear-gradient(to right, #00b09b, #96c93d)',
-        error: 'linear-gradient(to right, #ff5f6d, #ffc371)',
-        warning: 'linear-gradient(to right, #f7971e, #ffd200)',
-        info: 'linear-gradient(to right, #2193b0, #6dd5ed)',
-        default: '#333'
-    };
-    // Merge with alertTypes override
-    if ($jsonAlertTypes) {
-        Object.assign(colorMap, $jsonAlertTypes);
-    }
-    // Merge with frontend override
-    if (typeof window.toastColorOverrides === 'object') {
-        Object.assign(colorMap, window.toastColorOverrides);
-    }
-    // Merge with PHP override
-    if ($jsonColors) {
-        Object.assign(colorMap, $jsonColors);
-    }
-
-    toasts.forEach(function(t){
-        var background = colorMap[t.type] || colorMap.default;
-        Toastify({
-            text: t.text,
-            duration: t.duration,
-            gravity: $jsonGravity,
-            position: $jsonPosition,
-            close: $jsonClose,
-            offset: $jsonOffset,
-            stopOnFocus: $jsonStopOnFocus,
-            style: {background: background},
-        }).showToast();
-    });
-})();
-JS;
-
-        $this->view->registerJs($js);
+        return Html::tag('div', '', [
+            'class' => 'portalium-flash-toastify',
+            'data-toasts' => Json::htmlEncode($toastData),
+            'data-options' => Json::htmlEncode($options),
+        ]);
     }
 }
