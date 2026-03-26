@@ -26,4 +26,15 @@ class TimeZoneHelper extends Component
 
         return $formattedTimezones;
     }
+
+    public static function getOffset($timezone)
+    {
+        try {
+            $tz = new \DateTimeZone($timezone);
+            $datetime = new \DateTime('now', $tz);
+            return $tz->getOffset($datetime);
+        } catch (\Exception $e) {
+            return 0;
+        }
+    }
 }

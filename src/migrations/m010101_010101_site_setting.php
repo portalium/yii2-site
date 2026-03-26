@@ -24,6 +24,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'app::title',
             'label' => 'Title',
             'value' => 'Portalium',
@@ -33,6 +34,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'app::language',
             'label' => 'Language',
             'value' => 'en-US',
@@ -42,6 +44,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'page::home',
             'label' => 'Home Page',
             'value' => '0',
@@ -62,6 +65,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'auth::layout',
             'label' => 'Auth Layout',
             'type' => Form::TYPE_DROPDOWNLIST,
@@ -80,6 +84,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'login::layout',
             'label' => 'Login and Signup Page Layout',
             'value' => 'single-column',
@@ -92,6 +97,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'app::logo_wide',
             'label' => 'Application Logo Wide',
             'value' => '0',
@@ -100,16 +106,16 @@ class m010101_010101_site_setting extends Migration
                 'widget' => '\portalium\storage\widgets\FilePicker',
                 'options' => [
                     'multiple' => 0,
-                    'attributes' => ['name','id_storage'],
+                    'attributes' => ['name', 'id_storage'],
                     'name' => 'app::logo_wide',
-                    'isPicker' => true,
-                    'allowedExtensions' => ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp']
+                    'isPicker' => true
                 ]
             ])
         ]);
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'app::logo_square',
             'label' => 'Application Logo Square',
             'value' => '0',
@@ -118,16 +124,16 @@ class m010101_010101_site_setting extends Migration
                 'widget' => '\portalium\storage\widgets\FilePicker',
                 'options' => [
                     'multiple' => 0,
-                    'attributes' => ['name','id_storage'],
+                    'attributes' => ['name', 'id_storage'],
                     'name' => 'app::logo_square',
-                    'isPicker' => true,
-                    'allowedExtensions' => ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp']
+                    'isPicker' => true
                 ]
             ])
         ]);
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'app::login_image',
             'label' => 'Application Login Image',
             'value' => '0',
@@ -136,16 +142,16 @@ class m010101_010101_site_setting extends Migration
                 'widget' => '\portalium\storage\widgets\FilePicker',
                 'options' => [
                     'multiple' => 0,
-                    'attributes' => ['name','id_storage'],
+                    'attributes' => ['name', 'id_storage'],
                     'name' => 'app::login_image',
-                    'isPicker' => true,
-                    'allowedExtensions' => ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp']
+                    'isPicker' => true
                 ]
             ])
         ]);
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'form::signup',
             'label' => 'Signup Form',
             'value' => '1',
@@ -155,6 +161,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'form::login',
             'label' => 'Login Form',
             'value' => '1',
@@ -164,6 +171,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'form::contact',
             'label' => 'Contact Form',
             'value' => '1',
@@ -173,6 +181,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'api::signup',
             'label' => 'API Signup',
             'value' => '1',
@@ -182,6 +191,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'api::login',
             'label' => 'API Login',
             'value' => '1',
@@ -191,6 +201,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'site::actions_permissions',
             'label' => 'Action Permissions',
             'value' => '',
@@ -200,6 +211,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'email::address',
             'label' => 'Email Address',
             'value' => 'info@portalium.dev',
@@ -209,6 +221,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'email::displayname',
             'label' => 'Email Display Name',
             'value' => 'Portal',
@@ -218,6 +231,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'smtp::server',
             'label' => 'SMTP Server',
             'value' => 'smtp.gmail.com',
@@ -226,6 +240,7 @@ class m010101_010101_site_setting extends Migration
         ]);
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'site::verifyEmail',
             'label' => 'Register Confirmation',
             'value' => '1',
@@ -234,6 +249,7 @@ class m010101_010101_site_setting extends Migration
         ]);
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'site::userStatus',
             'label' => 'User Registration Status',
             'value' => '10',
@@ -243,6 +259,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'smtp::port',
             'label' => 'SMTP Port',
             'value' => '465',
@@ -252,6 +269,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'smtp::username',
             'label' => 'SMTP Username',
             'value' => '',
@@ -261,6 +279,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'smtp::password',
             'label' => 'SMTP Password',
             'value' => '',
@@ -270,6 +289,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'smtp::encryption',
             'label' => 'SMTP Encryption',
             'value' => 'ssl',
@@ -279,6 +299,7 @@ class m010101_010101_site_setting extends Migration
 
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'site::recaptcha',
             'label' => 'ReCaptcha',
             'value' => '1',
@@ -287,6 +308,7 @@ class m010101_010101_site_setting extends Migration
         ]);
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
+            'is_preference' => 0,
             'name' => 'site::timezone',
             'label' => 'Timezone',
             'value' => 'UTC',

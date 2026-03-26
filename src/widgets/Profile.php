@@ -19,7 +19,7 @@ class Profile extends Widget
     public $options;
     public $placement;
 
-    public function init()
+    public function init(): void
     {
         parent::init();
         $this->style = '{"icon":"","color":"","iconSize":"","display":"3","childDisplay":"1", "placement":"default"}';
@@ -51,7 +51,7 @@ class Profile extends Widget
             if ($model !== null) {
                 $filename = $model->name;
                 if ($filename !== null && $filename !== '') {
-                    $filePath = Yii::getAlias('@web/data/' . $filename);
+                    $filePath = $model->getFileUrl();
                     $title = $model->title;
                 }
             } else {
