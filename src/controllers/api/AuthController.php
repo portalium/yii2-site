@@ -103,7 +103,7 @@ class AuthController extends RestController
         $bodyParams = Yii::$app->getRequest()->getBodyParams();
         $token = $bodyParams['token'] ?? null;
         $password = $bodyParams['password'] ?? null;
-
+        Yii::warning($token);
         if (!$token) {
             return $this->error(['ResetPassword' => Module::t('Token (token) required.')]);
         }
