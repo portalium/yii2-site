@@ -13,13 +13,15 @@ use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use InvalidArgumentException;
 use portalium\site\models\VerifyEmailForm;
+use portalium\site\models\PasswordResetRequestForm;
+use portalium\site\models\ResetPasswordForm;
 
 class AuthController extends RestController
 {
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        $behaviors['authenticator']['except'] = ['login', 'signup'];
+        $behaviors['authenticator']['except'] = ['login', 'signup', 'request-password-reset', 'reset-password'];
 
         return $behaviors;
     }
@@ -75,6 +77,52 @@ class AuthController extends RestController
                 return $this->modelError($model);
         } else {
             return $this->error(['SignupForm' => Module::t("Username (username), Password (password) and Email (email) required.")]);
+        }
+    }
+
+    public function actionRequestPasswordReset()
+    {
+        $model = new PasswordResetRequestForm();
+        if ($model->load(Yii::$app->getRequest()->getBodyParams(), '')) {
+            if ($model->validate()) {
+                if ($model->sendEmail()) {
+                    return ['message' => Module::t('Check your email for further instructions.'), 'success' => true];
+                } else {
+                    return $this->error(['PasswordReset' => Module::t('Sorry, we are unable to reset password for the provided email address.')]);
+                }
+            } else {
+                return $this->modelError($model);
+            }
+        } else {
+            return $this->error(['PasswordResetRequest' => Module::t('Email (email) required.')]);
+        }
+    }
+
+    public function actionResetPassword()
+    {
+        $bodyParams = Yii::$app->getRequest()->getBodyParams();
+        $token = $bodyParams['token'] ?? null;
+        $password = $bodyParams['password'] ?? null;
+
+        if (!$token) {
+            return $this->error(['ResetPassword' => Module::t('Token (token) required.')]);
+        }
+
+        if (!$password) {
+            return $this->error(['ResetPassword' => Module::t('Password (password) required.')]);
+        }
+
+        try {
+            $model = new ResetPasswordForm($token);
+        } catch (InvalidParamException $e) {
+            return $this->error(['ResetPassword' => $e->getMessage()]);
+        }
+
+        $model->password = $password;
+        if ($model->validate() && $model->resetPassword()) {
+            return $this->success(['message' => Module::t('New password saved.')]);
+        } else {
+            return $this->modelError($model);
         }
     }
 
