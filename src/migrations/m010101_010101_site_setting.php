@@ -66,38 +66,6 @@ class m010101_010101_site_setting extends Migration
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
             'is_preference' => 0,
-            'name' => 'auth::layout',
-            'label' => 'Auth Layout',
-            'type' => Form::TYPE_DROPDOWNLIST,
-            'value' => 'login',
-            'config' => json_encode([
-                'method' => [
-                    'class' => 'portalium\theme\Module',
-                    'name' => 'getLayouts',
-                    'map' => [
-                        'key' => 'layout',
-                        'value' => 'name'
-                    ]
-                ]
-            ])
-        ]);
-
-        $this->insert(Module::$tablePrefix . 'setting', [
-            'module' => 'site',
-            'is_preference' => 0,
-            'name' => 'login::layout',
-            'label' => 'Login and Signup Page Layout',
-            'value' => 'single-column',
-            'type' => Form::TYPE_DROPDOWNLIST,
-            'config' => json_encode([
-                'single-column' => 'Single Column',
-                'two-column' => 'Two Column'
-            ])
-        ]);
-
-        $this->insert(Module::$tablePrefix . 'setting', [
-            'module' => 'site',
-            'is_preference' => 0,
             'name' => 'app::logo_wide',
             'label' => 'Application Logo Wide',
             'value' => '0',
@@ -134,44 +102,6 @@ class m010101_010101_site_setting extends Migration
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
             'is_preference' => 0,
-            'name' => 'app::login_image',
-            'label' => 'Application Login Image',
-            'value' => '0',
-            'type' => Form::TYPE_WIDGET,
-            'config' => json_encode([
-                'widget' => '\portalium\storage\widgets\FilePicker',
-                'options' => [
-                    'multiple' => 0,
-                    'attributes' => ['name', 'id_storage'],
-                    'name' => 'app::login_image',
-                    'isPicker' => true
-                ]
-            ])
-        ]);
-
-        $this->insert(Module::$tablePrefix . 'setting', [
-            'module' => 'site',
-            'is_preference' => 0,
-            'name' => 'form::signup',
-            'label' => 'Signup Form',
-            'value' => '1',
-            'type' => Form::TYPE_RADIOLIST,
-            'config' => json_encode([1 => 'Show', 0 => 'Hide'])
-        ]);
-
-        $this->insert(Module::$tablePrefix . 'setting', [
-            'module' => 'site',
-            'is_preference' => 0,
-            'name' => 'form::login',
-            'label' => 'Login Form',
-            'value' => '1',
-            'type' => Form::TYPE_RADIOLIST,
-            'config' => json_encode([1 => 'Show', 0 => 'Hide'])
-        ]);
-
-        $this->insert(Module::$tablePrefix . 'setting', [
-            'module' => 'site',
-            'is_preference' => 0,
             'name' => 'form::contact',
             'label' => 'Contact Form',
             'value' => '1',
@@ -182,30 +112,10 @@ class m010101_010101_site_setting extends Migration
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
             'is_preference' => 0,
-            'name' => 'api::signup',
-            'label' => 'API Signup',
-            'value' => '1',
-            'type' => Form::TYPE_RADIOLIST,
-            'config' => json_encode([1 => 'Allow', 0 => 'Deny'])
-        ]);
-
-        $this->insert(Module::$tablePrefix . 'setting', [
-            'module' => 'site',
-            'is_preference' => 0,
-            'name' => 'api::login',
-            'label' => 'API Login',
-            'value' => '1',
-            'type' => Form::TYPE_RADIOLIST,
-            'config' => json_encode([1 => 'Allow', 0 => 'Deny'])
-        ]);
-
-        $this->insert(Module::$tablePrefix . 'setting', [
-            'module' => 'site',
-            'is_preference' => 0,
             'name' => 'site::actions_permissions',
             'label' => 'Action Permissions',
             'value' => '',
-            'type' => 4, //Form::TYPE_HIDDENINPUT,
+            'type' => 4,
             'config' => ''
         ]);
 
@@ -238,6 +148,7 @@ class m010101_010101_site_setting extends Migration
             'type' => Form::TYPE_INPUTTEXT,
             'config' => ''
         ]);
+
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
             'is_preference' => 0,
@@ -246,15 +157,6 @@ class m010101_010101_site_setting extends Migration
             'value' => '1',
             'type' => Form::TYPE_RADIOLIST,
             'config' => json_encode([1 => 'Email Confirmation', 0 => 'Disable'])
-        ]);
-        $this->insert(Module::$tablePrefix . 'setting', [
-            'module' => 'site',
-            'is_preference' => 0,
-            'name' => 'site::userStatus',
-            'label' => 'User Registration Status',
-            'value' => '10',
-            'type' => Form::TYPE_RADIOLIST,
-            'config' => json_encode([10 => 'Active', 20 => 'Passive'])
         ]);
 
         $this->insert(Module::$tablePrefix . 'setting', [
@@ -306,6 +208,7 @@ class m010101_010101_site_setting extends Migration
             'type' => Form::TYPE_RADIOLIST,
             'config' =>  json_encode([1 => 'Allow', 0 => 'Deny'])
         ]);
+
         $this->insert(Module::$tablePrefix . 'setting', [
             'module' => 'site',
             'is_preference' => 0,
