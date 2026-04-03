@@ -16,7 +16,7 @@ class ProfileAsset extends AssetBundle
     public $publishOptions = [
         'forceCopy' => YII_DEBUG,
     ];
-    public function init()
+    public function init(): void
     {
         parent::init();
     }

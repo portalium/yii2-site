@@ -9,7 +9,7 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class Mailer extends CoreMailer
 {
-    public function init()
+    public function init(): void
     {
         parent::init();
         $transport = [

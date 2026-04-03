@@ -35,7 +35,6 @@ class ProfileForm extends Model
             ['last_name', 'safe'],
             ['id_avatar', 'safe'],
             ['access_token', 'safe'],
-            [['id'], 'integer'],
         ];
 
         return $rules;
