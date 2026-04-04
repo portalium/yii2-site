@@ -71,7 +71,17 @@ if ($placement == 'top-to-bottom') {
         <li>
             <hr class="dropdown-divider">
         </li>
-        <li><a class="dropdown-item " href="/auth/default/logout" style="text-align: center;border:none !important"><?php echo Module::t('Logout') ?></a></li>
+           <li>
+            <?= yii\helpers\Html::a(
+                Module::t('Logout'), 
+                ['/auth/default/logout'], 
+                [
+                    'class' => 'dropdown-item',
+                    'data-method' => 'post',
+                    'style' => 'text-align: center; border:none !important'
+                ]
+            ) ?>
+        </li>
     </ul>
 </li>
 </ul>
