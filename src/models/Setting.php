@@ -30,7 +30,6 @@ class Setting extends ActiveRecord
     public function init()
     {
         $this->on(self::EVENT_AFTER_UPDATE, function($event) {
-
             if($event->changedAttributes && Yii::$app->getModule($event->data['module']))
             {
                 Event::trigger(Yii::$app->getModule($event->data['module']), Module::EVENT_SETTING_UPDATE, new Event(['payload' => [

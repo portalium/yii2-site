@@ -72,7 +72,7 @@ class FlashMessage extends Widget
      */
     public $autoDismiss = true;
 
-    public function init()
+    public function init(): void
     {
         parent::init();
         ToastifyAsset::register($this->view);

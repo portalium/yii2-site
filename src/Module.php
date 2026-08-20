@@ -6,6 +6,7 @@ use Yii;
 use portalium\base\Event;
 use portalium\user\Module as UserModule;
 use portalium\site\components\TriggerActions;
+use portalium\site\components\SettingActions;
 use portalium\site\models\Setting;
 
 class Module extends \portalium\base\Module
@@ -21,14 +22,16 @@ class Module extends \portalium\base\Module
         [
             'class' => 'yii\rest\UrlRule',
             'controller' => [
-                'site/setting'
+                'site/auth',
+                'site/setting',
             ]
         ],
     ];
 
     public static $tablePrefix = 'site_';
 
-    public function getMenuItems(){
+    public function getMenuItems()
+    {
         $menuItems = [
             [
                 [
@@ -56,8 +59,8 @@ class Module extends \portalium\base\Module
                 [
                     'menu' => 'web',
                     'type' => 'widget',
-                    'label'=>'portalium\site\widgets\profile', 
-                    'name'=>'Profile',
+                    'label' => 'portalium\site\widgets\profile',
+                    'name' => 'Profile',
                 ],
                 [
                     'menu' => 'web',
@@ -71,12 +74,30 @@ class Module extends \portalium\base\Module
 
     public static function moduleInit()
     {
-        if (!Yii::$app instanceof \yii\console\Application) 
-            Yii::$app->language = (Yii::$app->session->get('lang') != "") ? Yii::$app->session->get('lang') : Setting::findOne(['name' => 'app::language'])->value;
+        $settings = Setting::find()
+            ->where(['name' => ['app::language', 'site::timezone']])
+            ->indexBy('name')
+            ->all();
 
-        self::registerTranslation('site','@portalium/site/messages',[
+        if (!Yii::$app instanceof \yii\console\Application) {
+            $lang = Yii::$app->session->get('lang');
+            if (!$lang && isset($settings['app::language'])) {
+                $lang = $settings['app::language']->value;
+            }
+            if ($lang) {
+                Yii::$app->language = $lang;
+            }
+        }
+
+        self::registerTranslation('site', '@portalium/site/messages', [
             'site' => 'site.php',
         ]);
+
+        if (isset($settings['site::timezone']) && $settings['site::timezone']->value) {
+            $timezone = $settings['site::timezone']->value;
+            Yii::$app->timeZone = $timezone;
+            Yii::$app->formatter->defaultTimeZone = $timezone;
+        }
     }
 
     public function registerComponents()
@@ -98,8 +119,8 @@ class Module extends \portalium\base\Module
 
     public static function settingT($category, $message, array $params = [])
     {
-        self::registerTranslation($category,'@portalium/'. $category .'/messages',[
-            $category => $category.'.php',
+        self::registerTranslation($category, '@portalium/' . $category . '/messages', [
+            $category => $category . '.php',
         ]);
 
         return parent::coreT($category, $message, $params);
@@ -108,6 +129,6 @@ class Module extends \portalium\base\Module
     public function registerEvents()
     {
         Event::on($this::className(), UserModule::EVENT_USER_CREATE, [new TriggerActions(), 'onUserCreateBefore']);
+        Event::on($this::className(), self::EVENT_SETTING_UPDATE, [new SettingActions(), 'changedSetting']);
     }
-
 }

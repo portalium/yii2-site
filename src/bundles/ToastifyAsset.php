@@ -16,8 +16,4 @@ class ToastifyAsset extends AssetBundle
         'plugins/toastify/js/toastify.js',
         'js/flash-message-toastify.js',
     ];
-
-    public $depends = [
-        'portalium\site\bundles\AppAsset',
-    ];
 }

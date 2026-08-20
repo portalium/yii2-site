@@ -20,28 +20,27 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php Panel::begin([
     'title' => Module::t('Settings'),
     'actions' => [
-        'header' => [
-        ],
+        'header' => [],
         'footer' => [
             Html::submitButton(Module::t('Save'), ['class' => 'btn btn-success', 'id' => 'setting-update-submit']),
         ]
     ]
 ]) ?>
 
-<?php 
+<?php
 $tabsData = [];
 foreach ($settingsGroup as $module => $items) {
     $tabsData[] = [
         'label' => Yii::$app->getModule($module)->t(Yii::$app->getModule($module)::$name),
         'content' => $this->render('_setting', ['settings' => $items, 'form' => $form]),
-        
     ];
 }
 
 echo \portalium\theme\widgets\Tabs::widget([
     'items' => $tabsData,
     'options' => [
-        'class' => 'nav-tabs-custom', 'style' => 'margin-bottom: 10px;'
+        'class' => 'nav-tabs-custom',
+        'style' => 'margin-bottom: 10px;'
     ],
     'id' => 'setting-tabs',
 ]);
