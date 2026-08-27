@@ -14,10 +14,11 @@
 	"support" : {
 		"issues" : "https://github.com/portalium/yii2-site/issues"
 	},
-	"require": {
-		"portalium/yii2-bootstrap5": "*",
-		"himiklab/yii2-recaptcha-widget" : "*"
-	},
+	    "require": {
+        "portalium/yii2-bootstrap5": "*",
+        "himiklab/yii2-recaptcha-widget" : "*",
+        "portalium/yii2-user": "*"
+    },
 	"autoload" : {
 		"psr-4" : {
 			"portalium\\site\\" : "src/"
