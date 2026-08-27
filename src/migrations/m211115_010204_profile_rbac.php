@@ -6,7 +6,7 @@ use yii\rbac\Rule;
 
 class m211115_010204_profile_rbac extends Migration
 {
-    public function up()
+    public function safeup()
     {
         $auth = \Yii::$app->authManager;
 
@@ -14,9 +14,7 @@ class m211115_010204_profile_rbac extends Migration
         $auth->getRule('siteOwnRule');
         $role = \Yii::$app->setting->getValue('site::admin_role');
         $admin = (isset($role) && $role != '') ? $auth->getRole($role) : $auth->getRole('admin');
-        $user = $auth->createRole('user');
-        $user->description = 'User';
-        $auth->add($user);
+        $user = $auth->getRole('user');
 
 
 
@@ -100,7 +98,7 @@ class m211115_010204_profile_rbac extends Migration
         $auth->addChild($siteWebProfileRegenerateTokenOwn, $siteWebProfileRegenerateToken);
 
     }
-    public function down()
+    public function safedown()
     {
         $auth = Yii::$app->authManager;
         $auth->remove($auth->getPermission('siteApiProfileEditPassword'));
