@@ -24,7 +24,12 @@ class Module extends \portalium\base\Module
             'controller' => [
                 'site/auth',
                 'site/setting',
-            ]
+            ],
+            'extraPatterns' => [
+                'GET privacy' => 'privacy',
+                'GET support' => 'support',
+                'GET app-info' => 'app-info',
+            ],
         ],
     ];
 
